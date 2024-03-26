@@ -1,0 +1,263 @@
+
+ScreenManager:
+    Tela_Abertura:
+    Apresentacao:
+    Tela_logar:
+    Tela_registro:
+
+<Tela_Abertura>:
+    name: 'abertura'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "img/img_2.png"
+            size_hint: .50, .50
+            pos_hint: {"center_x": .54, "center_y": .6}
+            canvas.before:
+                Color:
+                    rgb: 1, .85, .825, 1
+
+        MDIconButton:
+            icon: "chevron-right"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .12}
+            on_press: app.root.current = 'aperesentar'
+
+        MDLabel:
+            text: "ANSIEDADE!!!"
+            pos_hint: {"center_x": .5, "center_y": .28}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+            
+        MDLabel:
+            text: "Autocuidado a ansiedade"
+            pos_hint: {"center_x": .5, "center_y": .21}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"13sp"
+
+<Apresentacao>:
+    name: 'aperesentar'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDLabel:
+            text: "B e m - v i n d o !"
+            halign:"center"
+            font_size: "30sp"
+            pos_hint: { "center_y": .90}
+
+        MDCard:
+
+            style: "elevated"
+            pos_hint: {"center_x": .5, "center_y": .70}
+            padding: "4dp"
+            size_hint: None, None
+            size: "240dp", "100dp"
+
+            MDRelativeLayout:
+                MDIconButton:
+                    icon: "dots-vertical"
+                    pos_hint: {"top": 1, "right": 1}
+                MDLabel:
+                    text: "Acredite  que a mudança está \nem você em sua capacidade."
+                    adaptive_size: True
+                    font_size: "14sp"
+                    color: "grey"
+                    pos: "12dp", "12dp"
+                    bold: True
+
+        MDCard:
+            style: "elevated"
+            pos_hint: {"center_x": .5, "center_y": .50}
+            padding: "4dp"
+            size_hint: None, None
+            size: "240dp", "100dp"
+            
+            MDRelativeLayout:
+                MDIconButton:
+                    icon: "dots-vertical"
+                    pos_hint: {"top": 1, "right": 1}
+                MDLabel:
+                    text: "Cada passo, por tão simples \nque seja, ja é uma conquista."
+                    adaptive_size: True
+                    font_size: "14sp"
+                    color: "grey"
+                    pos: "12dp", "12dp"
+                    bold: True
+
+        MDCard:
+            id: card3
+            style: "elevated"
+            pos_hint: {"center_x": .5, "center_y": .30}
+            padding: "4dp"
+            
+            size_hint: None, None
+            size: "240dp", "100dp"
+           
+            MDRelativeLayout:
+                MDIconButton:
+                    icon: "dots-vertical"
+                    pos_hint: {"top": 1, "right": 1}
+                    on_press: app.root.current = 'abertura'
+                MDLabel:
+                    text: "Não se entregue ao desespero, \nsempre que puder relaxe.."
+                    adaptive_size: True
+                    font_size: "14sp"
+                    color: "grey"
+                    pos: "12dp", "12dp"
+                    bold: True
+            
+        MDIconButton:
+            icon: "chevron-right"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .12}
+            on_press: app.root.current = 'logar'
+
+<Tela_logar>:
+    name: 'logar'
+    MDFloatLayout:
+        md_bg_color:  188/255, 227/255, 217/255, 1
+        Image:
+            source: "img/doc3.png"
+            size_hint: .3, .3
+            pos_hint: {"center_x": .25, "center_y": .86}
+
+        MDLabel:
+            text: "Bem - vindo !"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .73}
+
+        MDLabel:
+            text: "Logue para continuar"
+            font_size: "20sp"
+            color: 120/255, 120/255, 120/255, 2
+            pos_hint: {"center_x": .6, "center_y": .66}
+
+        MDLabel:
+            text: " "
+            halign: "center"
+            font_size: "14.5sp"
+            pos_hint: { "center_x": .5, "center_y": .055}
+            id: lblogin
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .55}
+            MDLabel:
+                text: "CPF"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+
+            Image:
+                source: "img/cpf.png "
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}
+            MDLabel:
+                text:"Senha"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: senha
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+
+            Image: 
+                source: "img/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        Button:
+            text: "Entrar"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .27}   
+            on_release: 
+                root.(cpf.text, senha.text)      
+                
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+        Button:
+            text: "Cadastre-se"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            on_press: app.root.current = 'registro' 
+            canvas.before:
+                Color: 
+                    rgb: 50/255, 66/255, 63/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+                
+        MDTextButton:    
+            text: "Esqueci minha senha"          
+            font_size: "15sp"
+            pos_hint: {"center_x": .5, "center_y": .11}
+            halign: "center"
+            color: 120/255, 120/255, 120/255, 1     
+            on_release: app.root.current = 'esqueci'
+
+<Tela_registro>:
+    name: 'registro'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:  
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'logar'  
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+            
+        MDLabel:
+            text: "Cadastre-se"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbregister       
