@@ -1,14 +1,18 @@
-
 ScreenManager:
-    Tela_Abertura:
+    TelaAbertura:
     Apresentacao:
     Tela_logar:
     Tela_registro:
+    EsqueceuSenha:
+    PainelInicial:
+    MudarInformacao:
+    chekarTela:
+    checandoTela:
 
-<Tela_Abertura>:
+<TelaAbertura>:
     name: 'abertura'
     MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 1
+        md_bg_color: 188/255, 227/255, 217/255, 2
         Image:
             source: "img/img_2.png"
             size_hint: .50, .50
@@ -158,7 +162,7 @@ ScreenManager:
                 background_color: 0, 0, 0, 0
                 cursor_color: 0, 0, 0, 1
                 cursor_width: "2sp"
-                foreground_color: 120/255, 120/255, 120/255, 1
+                foreground_color: 120/255, 120/255, 120/255, 2
                 font_size: "17sp"
                 multiline: False
 
@@ -169,7 +173,7 @@ ScreenManager:
             MDFloatLayout:
                 pos_hint: {"center_x": .5, "center_y": .0}
                 size_hint_y: .03
-                md_bg_color: 120/255, 120/255, 120/255, 1
+                md_bg_color: 120/255, 120/255, 120/255, 2
 
         MDFloatLayout:
             size_hint: .79, .08
@@ -196,15 +200,15 @@ ScreenManager:
             MDFloatLayout:
                 pos_hint: {"center_x": .5, "center_y": 0}
                 size_hint_y: .03    
-                md_bg_color: 120/255, 120/255, 120/255, 1    
+                md_bg_color: 120/255, 120/255, 120/255, 2    
 
         Button:
             text: "Entrar"
+            font_size: "22sp"
             background_color: 0, 0, 0, 0
             size_hint: .79, .065
             pos_hint: {"center_x": .5, "center_y": .27}   
-            on_release: 
-                root.loga(cpf.text, senha.text)      
+            on_release: root.logando(cpf.text, senha.text)      
                 
             canvas.before:
                 Color: 
@@ -212,9 +216,10 @@ ScreenManager:
                 RoundedRectangle:
                     size: self.size
                     pos: self.pos
-                    radius: [2]  
+                    radius: [1]  
         Button:
             text: "Cadastre-se"
+            font_size: "22sp"
             background_color: 0, 0, 0, 0
             size_hint: .79, .065
             pos_hint: {"center_x": .5, "center_y": .18}
@@ -228,12 +233,12 @@ ScreenManager:
                     radius: [2]  
                 
         MDTextButton:    
-            text: "Esqueci minha senha"          
-            font_size: "15sp"
+            text: "Esqueci a senha"          
+            font_size: "16sp"
             pos_hint: {"center_x": .5, "center_y": .11}
             halign: "center"
             color: 120/255, 120/255, 120/255, 1     
-            on_release: app.root.current = 'esqueci'
+            on_release: app.root.current = 'esqueceu'
 
 <Tela_registro>:
     name: 'registro'
@@ -261,3 +266,544 @@ ScreenManager:
             font_size: "16sp"
             pos_hint: {"center_x": .5, "center_y": .09}    
             id: lbregister       
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel: 
+                text:"Nome"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id : nome
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "img/user.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "img/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 2
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Senha"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: senha 
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "img/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1            
+
+        Button:
+            text: "Cadastrar"
+            font_size: "22sp"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.logando(nome.text, cpf.text, senha.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [1]
+
+<EsqueceuSenha>:
+    name: 'esqueceu'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 2
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'logar'
+            
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+            
+        MDLabel:
+            text: "Esqueceu a senha?"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            pos_hint: {"center_x": .5, "center_y": .15}    
+            id: lbredfsenha
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id : cpf
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 2
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .55, .55
+            MDFloatLayout: 
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Nova senha"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: novasenha
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/key.png"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 2
+
+        Button:
+            text: "Redefinir senha"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .35}
+            on_release: root.perdeuSenha(cpf.text, novasenha.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [1]
+
+<PainelInicial>:
+    name: 'painel'
+    MDBoxLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation:'vertical'
+        MDIconButton:
+            icon:"img/userconf.png"
+            size_hint: .3, .15
+            pos_hint: {"center_x": .22, "center_y": .95}
+            on_release: app.root.current = 'aboutuser'
+
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                MDLabel:                            
+                    text:" "
+                    halign: "center"
+                    font_size: "22sp"
+                    pos_hint: {"center_x": .5, "center_y": .45}  
+                    id: lbdashboard 
+
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            ElementCard:
+                image:"img/calendar4.png"
+                text:"Agendamento"
+                on_release: app.root.current = 'precheck'
+                
+            ElementCard:
+                image:"img/meds3.png"
+                text:"Estoque"
+                on_release: app.root.current = 'meds'
+
+            ElementCard:
+                image:"img/register.png"
+                text:"Cadastro"
+                on_release: app.root.current = 'activities'
+
+            ElementCard:
+                image:"img/infos.png"
+                text:"Informações"
+                on_release: app.root.current = 'info' 
+
+<ElementCard@MDCard>:
+    md_bg_color: 120/255, 173/255, 173/255, 1
+    padding:dp(10)
+    spacing:dp(10)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_size: "15sp" 
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+              
+
+
+
+<MudarInformacao>:
+    name: 'mudar'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 2
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'aboutuser'
+            
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+            
+        MDLabel:
+            text: "Mude informações"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbchange           
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"Nome"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id : nome
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/user.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+            MDFloatLayout:
+                size_hint: .79, .08
+                pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"ID"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: id 
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "images/id.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1            
+
+        Button:
+            text: "Editar"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.editaInfo(nome.text, cpf.text, id.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+
+<chekarTela>:
+    name: 'check'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'painel'
+                 
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}       
+
+        Button:
+            text: "Agendar consulta"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .085
+            pos_hint: {"center_x": .5, "center_y": .6}
+            on_press: app.root.current = 'checkin'
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 2
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [6]
+
+        Button:
+            text: "Agendar retirada"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .085
+            pos_hint: {"center_x": .5, "center_y": .49}
+            on_press: app.root.current = 'checkout'
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [6]
+
+<checandoTela>:
+    name: 'checando'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_release: app.root.current = 'checar'
+ 
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbcheckout    
+
+        MDLabel:
+            text: "Agendar retirada"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"Medicamento"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id: med
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "img/meds2.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data() 
+
+            MDLabel:                              
+                text:"Data"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+
+            MDLabel:
+                id: data
+                text: " "
+                font_size: "12sp"
+                pos_hint: {"center_x": .5, "center_y": 2.9}     
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"ID do paciente"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: paciente2
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "img/id.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1            
+
+        Button:
+            text: "Agendar"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.retirada(med.text, data.text, paciente2.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 2
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [1]
