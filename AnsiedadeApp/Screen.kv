@@ -1,6 +1,10 @@
 ScreenManager:
     TelaAbertura:
     Apresentacao:
+    Ansiedada:
+    Deprecao:
+    PreCrise:
+    PosCrise:
     Tela_logar:
     Tela_registro:
     EsqueceuSenha:
@@ -11,114 +15,204 @@ ScreenManager:
 
 <TelaAbertura>:
     name: 'abertura'
-    MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 2
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
         Image:
-            source: "img/img_2.png"
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+            
+    MDFloatLayout: 
+        Image:
+            source: "img/ansiedade.png"
             size_hint: .50, .50
             pos_hint: {"center_x": .54, "center_y": .6}
             canvas.before:
                 Color:
                     rgb: 1, .85, .825, 1
-
-        MDIconButton:
-            icon: "chevron-right"
-            user_font_size: "35sp"
-            pos_hint: {"center_x": .5, "center_y": .12}
-            on_press: app.root.current = 'aperesentar'
-
         MDLabel:
-            text: "ANSIEDADE!!!"
+            text: "BEM VINDO!!!"
+            pos_hint: {"center_x": .5, "center_y": .9}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"30sp"
+  
+        MDLabel:
+            text: "Resilient Health"
             pos_hint: {"center_x": .5, "center_y": .28}
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0
-            font_size:"35sp"
-            
+            font_size:"25sp"
         MDLabel:
-            text: "Autocuidado a ansiedade"
+            text: "Gerencie suas emoções: "
             pos_hint: {"center_x": .5, "center_y": .21}
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0
             font_size:"13sp"
 
+        Button:
+            text: "Saiba mais..."
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .10}   
+            on_press: app.root.current ='apresentar'     
+                
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+
 <Apresentacao>:
-    name: 'aperesentar'
-    MDFloatLayout:
+    name: 'apresentar' 
+    MDRelativeLayout:
         md_bg_color: 188/255, 227/255, 217/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+
+    MDFloatLayout:
+        
         MDLabel:
-            text: "B e m - v i n d o !"
+            text: "Não desista, a recuperação é possivel."
             halign:"center"
-            font_size: "30sp"
+            text_color: 54, 52, 69
             pos_hint: { "center_y": .90}
 
-        MDCard:
+        MDGridLayout:
+            size_hint_y:.65
+            pos_hint: {"center_y": .45}
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(15)]
+            spacing:dp(15)
+            ElementCard:
+                image:"img/pessoa.png"
+                text:"Ansiedade"
+                text_color: 54, 52, 69
+                on_release: app.root.current = 'ansiedade'
+                
+            ElementCard:
+                image:"img/deprecao.png"
+                text:"Depreção"
+                text_color: 54, 52, 69
+                on_release: app.root.current = 'deprecao'
 
-            style: "elevated"
-            pos_hint: {"center_x": .5, "center_y": .70}
-            padding: "4dp"
-            size_hint: None, None
-            size: "240dp", "100dp"
+            ElementCard:
+                image:"img/pre.png"
+                text:"Pré crise"
+                text_color: 54, 52, 69
+                on_release: app.root.current = 'preCrise'
 
-            MDRelativeLayout:
-                MDIconButton:
-                    icon: "dots-vertical"
-                    pos_hint: {"top": 1, "right": 1}
-                MDLabel:
-                    text: "Acredite  que a mudança está \nem você em sua capacidade."
-                    adaptive_size: True
-                    font_size: "14sp"
-                    color: "grey"
-                    pos: "12dp", "12dp"
-                    bold: True
+            ElementCard:
+                image:"img/pos.png"
+                text:"Pós crise"
+                text_color: 54, 52, 69
+                on_release: app.root.current = 'posCrise' 
+        
 
-        MDCard:
-            style: "elevated"
-            pos_hint: {"center_x": .5, "center_y": .50}
-            padding: "4dp"
-            size_hint: None, None
-            size: "240dp", "100dp"
-            
-            MDRelativeLayout:
-                MDIconButton:
-                    icon: "dots-vertical"
-                    pos_hint: {"top": 1, "right": 1}
-                MDLabel:
-                    text: "Cada passo, por tão simples \nque seja, ja é uma conquista."
-                    adaptive_size: True
-                    font_size: "14sp"
-                    color: "grey"
-                    pos: "12dp", "12dp"
-                    bold: True
+        Button:
+            text: "Cadastre-se"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .10}   
+            on_press: app.root.current ='logar'     
+                
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
 
-        MDCard:
-            id: card3
-            style: "elevated"
-            pos_hint: {"center_x": .5, "center_y": .30}
-            padding: "4dp"
-            
-            size_hint: None, None
-            size: "240dp", "100dp"
-           
-            MDRelativeLayout:
-                MDIconButton:
-                    icon: "dots-vertical"
-                    pos_hint: {"top": 1, "right": 1}
-                    on_press: app.root.current = 'abertura'
-                MDLabel:
-                    text: "Não se entregue ao desespero, \nsempre que puder relaxe.."
-                    adaptive_size: True
-                    font_size: "14sp"
-                    color: "grey"
-                    pos: "12dp", "12dp"
-                    bold: True
-            
+<Ansiedada>:
+    name:'ansiedade'
+    MDFloatLayout:
+        md_bg_color: 190/255, 240/255, 217/255
+        MDLabel:
+            text: "ANSIEDADE..."   
+            pos_hint: {"center_x": .5, "center_y": .85}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+
         MDIconButton:
-            icon: "chevron-right"
+            icon: "chevron-left"
             user_font_size: "35sp"
-            pos_hint: {"center_x": .5, "center_y": .12}
-            on_press: app.root.current = 'logar'
+            pos_hint: {"center_x": .5, "center_y": .12}      
+            on_press: app.root.current = 'apresentar'
+
+<Deprecao>:
+    name:'deprecao'
+    MDLabel:
+        text: "DEPREÇÂO..."   
+        pos_hint: {"center_x": .5, "center_y": .28}       
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0
+        font_size:"35sp"
+
+    MDIconButton:
+        icon: "chevron-left"
+        user_font_size: "35sp"
+        pos_hint: {"center_x": .5, "center_y": .12}      
+        on_press: app.root.current = 'apresentar'
+
+
+<PreCrise>:
+    name:'preCrise'
+    MDLabel:
+        text: "PRE-CRISE..."   
+        pos_hint: {"center_x": .5, "center_y": .28}       
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0
+        font_size:"35sp"
+
+    MDIconButton:
+        icon: "chevron-left"
+        user_font_size: "35sp"
+        pos_hint: {"center_x": .5, "center_y": .12}    
+        on_release: 
+            app.root.current: 'apresentar'
+        
+
+<PosCrise>:
+    name:'posCrise'
+    MDLabel:
+        text: "POS-CRISE..."   
+        pos_hint: {"center_x": .5, "center_y": .28}       
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0
+        font_size:"35sp"
+
+    MDIconButton:
+        icon: "chevron-left"
+        user_font_size: "35sp"
+        pos_hint: {"center_x": .5, "center_y": .12}      
+        on_press: app.root.current = 'apresentar'
 
 <Tela_logar>:
     name: 'logar'
@@ -404,7 +498,7 @@ ScreenManager:
                 font_size: "17sp"
                 multiline: False
             Image: 
-                source: "images/cpf.png"     
+                source: "img/cpf.png"     
                 pos_hint: {"center_x": .96, "center_y": 3.5}
                 size_hint: .55, .55
             MDFloatLayout: 
@@ -496,18 +590,20 @@ ScreenManager:
             ElementCard:
                 image:"img/infos.png"
                 text:"Informações"
+                text_color:54, 52, 69
                 on_release: app.root.current = 'info' 
 
 <ElementCard@MDCard>:
     md_bg_color: 120/255, 173/255, 173/255, 1
     padding:dp(10)
     spacing:dp(10)
-    radius:dp(25)
+    radius:dp(5)
     ripple_behavior: True
     image:''
     text:""
     items_count:""
     subtext:''
+    
 
     orientation:'vertical'
     Image:
@@ -573,7 +669,7 @@ ScreenManager:
                 font_size: "17sp"
                 multiline: False
             Image: 
-                source: "images/user.png"     
+                source: "img/user.png"     
                 pos_hint: {"center_x": .96, "center_y": 3.5}
                 size_hint: .5, .5
             MDFloatLayout:
@@ -598,7 +694,7 @@ ScreenManager:
                 font_size: "17sp"
                 multiline: False
             Image: 
-                source: "images/cpf.png"     
+                source: "img/cpf.png"     
                 pos_hint: {"center_x": .96, "center_y": 3}
                 size_hint: .7, .7
             MDFloatLayout:
@@ -625,7 +721,7 @@ ScreenManager:
                 multiline: False
                 password: True
             Image: 
-                source: "images/id.png"     
+                source: "img/id.png"     
                 pos_hint: {"center_x": .96, "center_y": .5}
                 size_hint: .6, .6
             MDFloatLayout:
@@ -807,3 +903,183 @@ ScreenManager:
                     size: self.size
                     pos: self.pos
                     radius: [1]
+
+<TelaMedicamento>
+    name: 'remedio'
+    md_bg_color: 188/255,  188/255, 188/255, 2
+    MDIconButton:
+        icon: 'chevron-double-left'
+        font_size: "35sp"
+        pos_hint: {"center_y": .95}
+        on_press:app.root.current = 'painel'
+    MDLabel:
+        text: 'Voltar'
+        font_size: "18sp"
+        pos_hint: {"center_x": .65, "center_y": .94}
+    Button:
+        text: "Verificar estoque..."
+        background_color: 0,0,0,1
+        size_hint: .79, .08
+        on_release: app.root.current = "VerificarMedicamentos"
+        canvas.before:
+            Color:
+                rgb: 25/255,35/255,45/255,1
+            RoundedRectangle:
+                size: self.size
+                pos:  self.pos
+                radius:[1]
+
+    Button:
+        text: "Comtrole de medicamento..."
+        background_color: 0,0,0,1
+        size_hint: .79, .08
+        on_release: app.root.current = "ControleMedicamentos"
+        canvas.before:
+            Color:
+                rgb: 25/255,35/255,45/255,1
+            RoundedRectangle:
+                size: self.size
+                pos:  self.pos
+                radius:[1]
+
+<VerificandoMedicamentos>:
+    name: 'VerificarMedicamentos'
+    MDFloatLayout:
+        md_bg_color: 188/255,188/255,188/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = "medicamentos"
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .65, "center_y": .94}
+
+
+<ControleMedicamentos>:
+    name: "controleMedicamentos"
+    MDIconButton:
+        icon: "chevron-double-left"
+        user_font_size: "35sp"
+        pos_hint: {"center_y": .95}
+        on_press: app.root.current = 'medicamentos'
+    MDLabel:
+        text: "Voltar"
+        font_size: "18sp"
+        pos_hint: {"center_x": .615, "center_y": .949}  
+            
+    MDLabel:
+        text: "Controle"
+        font_size: "28sp"
+        pos_hint: {"center_x": .6, "center_y": .85}    
+        
+    MDLabel:
+        text: " "
+        halign:"center"
+        font_size: "12sp"
+        pos_hint: {"center_x": .5, "center_y": .04}    
+        id: lbmeds 
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .5}   
+        MDLabel:
+            text:"Nome"
+            font_size: "14sp"
+            pos_hint: {"center_x": .5, "center_y": 3.85} 
+        TextInput:
+            id : nome_med
+            size_hint_y: .75
+            pos_hint: {"center_x": .49, "center_y": 3.4} 
+            background_color: 0, 0, 0, 0    
+            cursor_color: 0, 0, 0, 1
+            cursor_width: "2sp"
+            foreground_color: 120/255, 120/255, 120/255, 1
+            font_size: "17sp"
+            multiline: False
+        Image: 
+            source: "img/meds2.png"     
+            pos_hint: {"center_x": .96, "center_y": 3.5}
+            size_hint: .5, .5
+        MDFloatLayout:
+            pos_hint: {"center_x": .5, "center_y": 3}
+            size_hint_y: .03    
+            md_bg_color: 120/255, 120/255, 120/255, 1
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Quantidade"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: quantidade
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image:  
+                source: "img/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"ID do medicamento"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:  
+                id: id_medicamento 
+                size_hint_y: .75
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "img/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1        
+                                 
+        Button: 
+            text: "Entrada"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.entradaMeds(nome_med.text, quantidade.text, id_med.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+
+        Button:
+            text: "Saída"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .1}
+            on_release: root.saidaMeds(nome_med.text, quantidade.text, id_med.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+

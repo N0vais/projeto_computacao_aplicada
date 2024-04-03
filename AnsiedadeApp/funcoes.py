@@ -206,11 +206,10 @@ def seletorDados(self):
     dataDialogo.bind(salvar = self.salvar, cancelar = self.cancelar)
     dataDialogo.open()
 
-# CHECAR A CONSULTA NO BANCO DE DADOS
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#
+# EDITA NOVAS CONSULTAAS NO BANCO DE DADOS
 def checar(self, especialista, data, paciente):
-    baseDados = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com "    
-    auto_key = 'AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw' 
-
+   
     request = requests.get(self.baseDados + '?auth=' + self.auto_key) 
     resposta = json.dumps(request.json())
 
@@ -221,7 +220,7 @@ def checar(self, especialista, data, paciente):
     elif paciente == "":
         self.ids.lbcheckin.text = "Incira um paciente valido..."
     else:
-        to_database = '{"Especialidade"}: 'f'{json.dumps(especialista)}'', "Data": 'f'{json.dumps(data)}'', "ID do paciente": 'f'{json.dumps(paciente)}'''
+        to_database = '{"Especialidade": 'f'{json.dumps(especialista)}'', "Data": 'f'{json.dumps(data)}'', "ID do paciente": 'f'{json.dumps(paciente)}'' }'
         bancoDados = baseDados.database()
         pacientes = bancoDados.child("Pacientes").get()
         for pacients in pacientes.each():
@@ -234,6 +233,69 @@ def checar(self, especialista, data, paciente):
         except ValueError:
             pass
   
+def salvar2(self,instacia, value):
+    self.ids.data.text = str(value)
+
+def cancelar2(self, instacia, value):
+    self.ids.data.text = "Você cancelou..."
+
+def seletorDados2(self):
+    dataDialogo = MDDatePicker(year=2024, month=3, day=29)
+    dataDialogo.bind(salvar2 = self.salvar2, cancelar2 = self.cancelar2)
+    dataDialogo.open()
+
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#
+# CRIAR UMA FUNÇÃO PARA RETIRADA DE MEDICAMENTO
+def checando(self, medicamento, data, paciente2):
+    #aki precisa ter a url do banco
+    #url resposta2 é do medicamento
+    
+    #url resposta é do paciente
+    request = requests.get(self.firebase_url3 + '?auth=' + self.auth_key)
+    resposta = json.dumps(request.json())
+    #url resposta2 é do medicamento
+    request2 = requests.get(self.firebase_url2 + '?auth=' + self.auth_key)
+    resposta2 = json.dumps(request2.json())
+
+    if medicamento not in resposta2:
+        self.ids.lbcheckout.text = "Não tem medicamneto..."
+    elif medicamento == "":
+        self.ids.lbcheckout.text = "Insira seu remedio..."
+    elif paciente2 not in resposta:
+        self.ids.lbcheckout.text = "Não existe este paciente em nossos sistema..."
+    elif paciente2 == "":
+        self.ids.lbcheckout.text = "campo vazio, paciente..."
+    else:
+        to_database = '{"Mdicamentos" : 'f'{json.dumps(medicamento)}'', "Data": 'f'{json.dumps(data)}'', "ID Paciente": 'f'{json.dumps(paciente2)}'' }'
+        try:
+           requests.post(url = self.baseDados, json = json.loads(to_database))
+           self.ids.lbcheckout.text = "Agendado com sucesso..."
+        except ValueError:
+            pass 
+
+# CRIANDO TABELA  DOS MEDIACMENTOS
+def medicamento_post(self, medicamento, qtd, id_medicamento):
+    request = requests.get(self.baseDados + '?auth=' + self.auto_key)
+    resposta = json.dumps(request.json())
+    if medicamento_post == "":
+        self.ids.lbmeds.text = "Insira medicamento..."
+    elif qtd == "":
+        self.ids.lbmeds.text = "Insira quantidade maior que 0..."
+    elif id_medicamento == "":
+        self.ids.lbmeds.text = "Insira um medicamento valido..." 
+    else:
+        try:
+            to_database = '{"Nome do medicamento": 'f'{json.dumps(medicamento)}'', "Quantidade": 'f'{json.dumps(qtd)}'', "ID medicamento": 'f'{json.dumps(id_medicamento)}''}'
+            requests.post(url = self.baseDados, json = json.loads(to_database))
+            self.ids.lbmeds.text = " Adicionado com sucesso..."
+
+        except ValueError:
+            pass
+        listaBase.append(int(qtd))
+
+    with open("medicamento.txt", "a") as med:
+        for item in listaBase:
+            med.write("%d\n" % item)
 
 
 
