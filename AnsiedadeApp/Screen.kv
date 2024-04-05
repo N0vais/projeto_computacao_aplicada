@@ -674,17 +674,29 @@ ScreenManager:
 
 <PainelInicial>:
     name: 'painel'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
     MDBoxLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 1
         orientation:'vertical'
         MDIconButton:
             icon:"img/user.png"
             size_hint: .3, .15
-            pos_hint: {"center_x": .22, "center_y": .95}
+            pos_hint: {"center_x": .20, "center_y": .95}
             on_release: app.root.current = 'sobreUsuario'
 
         MDBoxLayout:
-            size_hint_y:.25
+            size_hint_y:.05
             padding:dp(25)
             MDBoxLayout:
                 MDLabel:                            
@@ -712,13 +724,13 @@ ScreenManager:
             ElementCard:
                 image:"img/register.png"
                 text:"Cadastro"
-                on_release: app.root.current = 'activities'
+                on_release: app.root.current = 'cadastro'
 
             ElementCard:
                 image:"img/infos.png"
                 text:"Informações"
                 text_color:54, 52, 69
-                on_release: app.root.current = 'info' 
+                on_release: app.root.current = 'info'         
 
 <ElementCard@MDCard>:
     md_bg_color: 120/255, 173/255, 173/255, .55
@@ -844,11 +856,23 @@ ScreenManager:
                     pos: self.pos
                     radius: [2]
 
-
+# aCIONA A MUDANÇA DE DADOS DO CADASTRO DO USUARIO
 <MudarInformacao>:
     name: 'mudar'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
     MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 1
         MDIconButton:
             icon: "chevron-left"
             user_font_size: "35sp"
@@ -954,7 +978,7 @@ ScreenManager:
             background_color: 0, 0, 0, 0
             size_hint: .79, .065
             pos_hint: {"center_x": .5, "center_y": .2}
-            on_release: root.editaInfo(nome.text, cpf.text, id.text)
+            on_release: root.editar_Informacoes(nome.text, cpf.text, id.text)
             canvas.before:
                 Color: 
                     rgb: 25/255, 38/255, 35/255, 1

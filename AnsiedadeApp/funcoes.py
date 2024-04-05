@@ -154,7 +154,7 @@ def editar_Usuario(self, nome, cpf, id):
     bancoDados = baseDados.database()
     usuario = bancoDados.child("Usuario").get()
     for user in usuario.each(): 
-        if user.val()["Nome"] in segundoNome:
+        if user.val()['Nome'] in segundoNome:
             if f'{nome}' != "":
                 bancoDados.child("Usuario").child(user.key()).update({'Nome': f'{nome}'})
                 linha = open("autenticado.txt", "r")

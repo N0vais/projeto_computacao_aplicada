@@ -95,9 +95,9 @@ class SobreUsuario(Screen):
         on_enter2(self)
 
 class MudarInformacao(Screen):
-    def editar_informacao(self, nome, cpf, id):
-        from funcoes import editar_usuario
-        editar_usuario(self, nome, cpf, id)
+    def editar_Informacoes(self, nome, cpf, id):
+        from funcoes import editar_Usuario
+        editar_Usuario(self, nome, cpf, id)
 
 class ChekarTela(Screen):
     bancoFirebase = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
