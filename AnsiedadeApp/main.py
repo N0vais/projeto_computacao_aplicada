@@ -6,13 +6,12 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, ScreenManager
 
-
 from funcoes import voltar_Login, voltar_Registro
 
 # DEFINI O TAMANHO DA TELA 
 Window.size = (350, 580)
 
-#gerencia as chamado para apresentar na tela
+#gerencia os chamados para apresentar na tela
 apresentarTela = ScreenManager()
 firebaseConfig={
     'apiKey': "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw",
@@ -82,25 +81,25 @@ class EsqueceuSenha(Screen):
 
 #FAZENDO AUTENTICAÇAO DO USUARIO, CRIANDO A CLASSE QUE VAI AUTENTICAR   
 class PainelInicial(Screen):
-    def entrar(self):
+    def on_enter(self):
         nome = list(open("autenticado.txt", "r"))
         nome = nome[0]
-        self.ids.lbdashboard.text = "Bem vindo(a), " + str(nome)
+        self.ids.lbpainel.text = "Olá, " + str(nome)
 
 class SobreUsuario(Screen):
     firebase_url = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/.json"
     auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
 
-    def entrar(self):
-        from funcoes import entrar2
-        entrar2(self)
+    def on_enter(self):
+        from funcoes import on_enter2
+        on_enter2(self)
 
 class MudarInformacao(Screen):
     def editar_informacao(self, nome, cpf, id):
         from funcoes import editar_usuario
         editar_usuario(self, nome, cpf, id)
 
-class chekarTela(Screen):
+class ChekarTela(Screen):
     bancoFirebase = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
     auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
 
@@ -120,7 +119,7 @@ class chekarTela(Screen):
         from funcoes import seletorDados
         seletorDados(self)
 
-class checandoTela(Screen):
+class ChecandoTela(Screen):
 
     def retirada(self, med, data, paciente2):
         from funcoes import checar

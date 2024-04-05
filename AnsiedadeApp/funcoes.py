@@ -90,7 +90,7 @@ def pegar_Postagem(self, cpf, senha):
 
     if (cpf != '' and senha != ''):
         if (len(cpf) == 11 and cpf in resposta) and (len(senha) >= 6 and senha in resposta):
-            self.ids.lblogin.text = "Aguarde...! "               
+            self.ids.lblogar.text = "Aguarde...! "               
             Clock.schedule_once(self.voltar_Login, 3)
             nome = list(open(f'{cpf}.txt', "r"))
             nome = nome[0]
@@ -102,14 +102,14 @@ def pegar_Postagem(self, cpf, senha):
                 f.write("\n")
                 f.write(str(id))  
         else: 
-            self.ids.lblogin.text = "CPF ou senha inválidos, Tente novamente"   
+            self.ids.lblogar.text = "CPF ou senha inválidos, Tente novamente"   
     else: 
         if(cpf == ''):
-            self.ids.lblogin.text = "Insira o CPF..."
+            self.ids.lblogar.text = "Insira o CPF..."
         elif(senha == ''):
-            self.ids.lblogin.text = "Insira a senha..."
+            self.ids.lblogar.text = "Insira a senha..."
         elif (cpf == '' and senha == ''):
-            self.ids.lblogin.text = "Insira os dados para fazer o login..." 
+            self.ids.lblogar.text = "Insira os dados para fazer o login..." 
 
 # REFAZER A SENHA (esquecei a senha)...
 def refazer_Senha(self, cpf, senha):
@@ -297,9 +297,13 @@ def medicamento_post(self, medicamento, qtd, id_medicamento):
         for item in listaBase:
             med.write("%d\n" % item)
 
+def on_enter(self):
+    self.start_second_thread()
 
+def start_second_thread(self):
+    threading.Thread(target=self.load_data).start()
 
-def entrar(self):
+def on_enter2(self):
     firebase_url = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com "    
     auto_key = 'AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw'  
   

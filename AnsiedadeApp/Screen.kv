@@ -9,9 +9,10 @@ ScreenManager:
     Tela_registro:
     EsqueceuSenha:
     PainelInicial:
+    SobreUsuario:
     MudarInformacao:
-    chekarTela:
-    checandoTela:
+    ChekarTela:
+    ChecandoTela:
 
 <TelaAbertura>:
     name: 'abertura'
@@ -78,7 +79,7 @@ ScreenManager:
 <Apresentacao>:
     name: 'apresentar' 
     MDRelativeLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 1
+        md_bg_color: 237/255, 206/255, 186/255, 1
         size_hint_y: .45
         pos_hint:{"top": 1}
 
@@ -92,12 +93,17 @@ ScreenManager:
             y: dp(40)
 
     MDFloatLayout:
-        
         MDLabel:
-            text: "Não desista, a recuperação é possivel."
-            halign:"center"
-            text_color: 54, 52, 69
+            text: "Não desista, a recuperação é possivel.\nEm momentos dificeis busque ajuda"
+            halign:"auto"
+            padding:dp(15)
             pos_hint: { "center_y": .90}
+
+        MDLabel:
+            text: "Click nos card para saber mais..."
+            halign:"center"
+            font_size: "12sp"
+            pos_hint: { "center_y": .80}
 
         MDGridLayout:
             size_hint_y:.65
@@ -108,30 +114,26 @@ ScreenManager:
             ElementCard:
                 image:"img/pessoa.png"
                 text:"Ansiedade"
-                text_color: 54, 52, 69
                 on_release: app.root.current = 'ansiedade'
                 
             ElementCard:
                 image:"img/deprecao.png"
                 text:"Depreção"
-                text_color: 54, 52, 69
                 on_release: app.root.current = 'deprecao'
 
             ElementCard:
                 image:"img/pre.png"
                 text:"Pré crise"
-                text_color: 54, 52, 69
                 on_release: app.root.current = 'preCrise'
 
             ElementCard:
                 image:"img/pos.png"
                 text:"Pós crise"
-                text_color: 54, 52, 69
                 on_release: app.root.current = 'posCrise' 
         
 
         Button:
-            text: "Cadastre-se"
+            text: "Logue para continuar..."
             background_color: 0, 0, 0, 0
             size_hint: .79, .065
             pos_hint: {"center_x": .5, "center_y": .10}   
@@ -144,80 +146,178 @@ ScreenManager:
                     size: self.size
                     pos: self.pos
                     radius: [2]
-
+    
+# CARDS DE APRESENTAÇÃO
 <Ansiedada>:
     name:'ansiedade'
     MDFloatLayout:
         md_bg_color: 190/255, 240/255, 217/255
         MDLabel:
-            text: "ANSIEDADE..."   
-            pos_hint: {"center_x": .5, "center_y": .85}       
+            text: "O que é Ansiedade?" 
+            pos_hint: {"center_x": .5, "center_y": .90}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"30sp"
+
+        MDGridLayout:
+            size_hint_y:.85
+            pos_hint: {"center_y": .45}
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(15)]
+            spacing:[dp(15)]
+            Card:
+                image:"img/pessoa.png"
+                text:"A ansiedade é uma resposta natural e normal do corpo ao estresse ou perigo. \nEla nos prepara para enfrentar ou fugir de situações desafiadoras."
+                #subtext:"No entanto, quando a ansiedade se torna excessiva ou frequente, pode se tornar um problema. Isso pode interferir na vida cotidiana,"
+                subtext:"causando sofrimento e dificultando o desempenho de tarefas do dia a dia."
+                on_release: app.root.current = 'ansiedade_text'    
+
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .10}      
+            on_press: app.root.current = 'apresentar'
+
+<Deprecao>:
+    name:'deprecao'
+    MDFloatLayout:
+        md_bg_color: 190/255, 240/255, 217/255
+        MDLabel:
+            text: "O que é depreção?"   
+            pos_hint: {"center_x": .5, "center_y": .90}       
             halign: "center"
             theme_text_color: "Custom"
             text_color: 0, 0, 0
             font_size:"35sp"
 
+        MDGridLayout:
+            size_hint_y:.85
+            pos_hint: {"center_y": .45}
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(15)]
+            spacing:[dp(15)]
+            Card:
+                image:"img/deprecao.png"
+                text:"A depressão é um transtorno mental comum e sério que interfere na vida diária de uma pessoa, afetando sua capacidade de trabalhar, dormir, estudar, comer e se divertir."
+                #subtext:"No entanto, quando a ansiedade se torna excessiva ou frequente, pode se tornar um problema. Isso pode interferir na vida cotidiana,"
+                subtext:"É causada por uma combinação de fatores genéticos, biológicos, ambientais e psicológicos."
+                on_release: app.root.current = 'deprecao_text'    
+
         MDIconButton:
             icon: "chevron-left"
             user_font_size: "35sp"
-            pos_hint: {"center_x": .5, "center_y": .12}      
+            pos_hint: {"center_x": .5, "center_y": .10}      
             on_press: app.root.current = 'apresentar'
-
-<Deprecao>:
-    name:'deprecao'
-    MDLabel:
-        text: "DEPREÇÂO..."   
-        pos_hint: {"center_x": .5, "center_y": .28}       
-        halign: "center"
-        theme_text_color: "Custom"
-        text_color: 0, 0, 0
-        font_size:"35sp"
-
-    MDIconButton:
-        icon: "chevron-left"
-        user_font_size: "35sp"
-        pos_hint: {"center_x": .5, "center_y": .12}      
-        on_press: app.root.current = 'apresentar'
-
 
 <PreCrise>:
     name:'preCrise'
-    MDLabel:
-        text: "PRE-CRISE..."   
-        pos_hint: {"center_x": .5, "center_y": .28}       
-        halign: "center"
-        theme_text_color: "Custom"
-        text_color: 0, 0, 0
-        font_size:"35sp"
+    MDFloatLayout:
+        md_bg_color: 190/255, 240/255, 217/255
+        MDLabel:
+            text: "O que é pre-crise!!!"   
+            pos_hint: {"center_x": .5, "center_y": .90}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
 
-    MDIconButton:
-        icon: "chevron-left"
-        user_font_size: "35sp"
-        pos_hint: {"center_x": .5, "center_y": .12}    
-        on_release: 
-            app.root.current: 'apresentar'
+        MDGridLayout:
+            size_hint_y:.85
+            pos_hint: {"center_y": .45}
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(0)]
+            spacing:[dp(15)]
+            Card:
+                image:"img/pre.png"
+                text:"A pré-crise de ansiedade e depressão é um período que antecede um episódio mais grave de ansiedade ou depressão. É caracterizada por um aumento gradual dos sintomas, que podem ser leves ou moderados, mas que podem indicar que uma crise está se aproximando."
+                subtext:"\nNo entanto, é importante estar atento a esses sinais e buscar ajuda profissional se você os notar em si mesmo ou em alguém próximo."
+                on_release: app.root.current = 'precrise_text'
+
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .10}      
+            on_press: app.root.current = 'apresentar'
         
 
 <PosCrise>:
     name:'posCrise'
-    MDLabel:
-        text: "POS-CRISE..."   
-        pos_hint: {"center_x": .5, "center_y": .28}       
-        halign: "center"
-        theme_text_color: "Custom"
-        text_color: 0, 0, 0
-        font_size:"35sp"
+    MDFloatLayout:
+        md_bg_color: 190/255, 240/255, 217/255
+        MDLabel:
+            text: "O que é pos-crise!!!"   
+            pos_hint: {"center_x": .5, "center_y": .90}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+    
+        MDGridLayout:
+            size_hint_y:.85
+            pos_hint: {"center_y": .45}
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(15)]
+            spacing:[dp(15)]
+            Card:
+                image:"img/pos.png"
+                text:"Superar o período de pós-crise exige resiliência, adaptabilidade e colaboração. Algumas medidas que podem ser tomadas: Se você está enfrentando o período pós-crise de ansiedade e depressão, procure ajuda de profissiona e não hesite em buscar o apoio de seus amigos e familiares."
+                subtext:"Após uma crise de ansiedade, sentir-se fraqueza no corpo, tremores nas mãos e muita inquietação? Esses sintomas são comuns após a crise?"
+                on_release: app.root.current = 'poscrise_text'
 
     MDIconButton:
         icon: "chevron-left"
         user_font_size: "35sp"
-        pos_hint: {"center_x": .5, "center_y": .12}      
+        pos_hint: {"center_x": .5, "center_y": .10}      
         on_press: app.root.current = 'apresentar'
 
+<Card@MDCard>:
+    md_bg_color: 120/255, 173/255, 173/255, .55
+    padding:[dp(10),dp(5),dp(10),dp(0)]
+    spacing:dp(10)
+    radius:dp(0)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"justify"
+            text:root.text
+            font_size: "12sp" 
+        MDLabel:
+            halign:"justify"
+            font_style:"Caption"
+            text:root.subtext
+            font_size: "12sp" 
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+# TELA DE LOGIN INICIO
 <Tela_logar>:
     name: 'logar'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+
     MDFloatLayout:
-        md_bg_color:  188/255, 227/255, 217/255, 1
         Image:
             source: "img/doc3.png"
             size_hint: .3, .3
@@ -239,7 +339,7 @@ ScreenManager:
             halign: "center"
             font_size: "14.5sp"
             pos_hint: { "center_x": .5, "center_y": .055}
-            id: lblogin
+            id: lblogar
 
         MDFloatLayout:
             size_hint: .79, .08
@@ -336,8 +436,21 @@ ScreenManager:
 
 <Tela_registro>:
     name: 'registro'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+
     MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 1
         MDIconButton:  
             icon: "chevron-left"
             user_font_size: "35sp"
@@ -443,8 +556,9 @@ ScreenManager:
             font_size: "22sp"
             background_color: 0, 0, 0, 0
             size_hint: .79, .065
+            password:True
             pos_hint: {"center_x": .5, "center_y": .2}
-            on_release: root.logando(nome.text, cpf.text, senha.text)
+            on_release: root.chamar_login(nome.text, cpf.text, senha.text)
             canvas.before:
                 Color: 
                     rgb: 25/255, 38/255, 35/255, 1
@@ -455,8 +569,21 @@ ScreenManager:
 
 <EsqueceuSenha>:
     name: 'esqueceu'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+
     MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 2
         MDIconButton:
             icon: "chevron-left"
             user_font_size: "35sp"
@@ -523,7 +650,7 @@ ScreenManager:
                 font_size: "17sp"
                 multiline: False
             Image: 
-                source: "images/key.png"     
+                source: "img/key.png"     
                 pos_hint: {"center_x": .96, "center_y": 3}
                 size_hint: .4, .4
             MDFloatLayout:
@@ -551,10 +678,10 @@ ScreenManager:
         md_bg_color: 188/255, 227/255, 217/255, 1
         orientation:'vertical'
         MDIconButton:
-            icon:"img/userconf.png"
+            icon:"img/user.png"
             size_hint: .3, .15
             pos_hint: {"center_x": .22, "center_y": .95}
-            on_release: app.root.current = 'aboutuser'
+            on_release: app.root.current = 'sobreUsuario'
 
         MDBoxLayout:
             size_hint_y:.25
@@ -565,7 +692,7 @@ ScreenManager:
                     halign: "center"
                     font_size: "22sp"
                     pos_hint: {"center_x": .5, "center_y": .45}  
-                    id: lbdashboard 
+                    id: lbpainel
 
         MDGridLayout:
             size_hint_y:.75
@@ -594,7 +721,7 @@ ScreenManager:
                 on_release: app.root.current = 'info' 
 
 <ElementCard@MDCard>:
-    md_bg_color: 120/255, 173/255, 173/255, 1
+    md_bg_color: 120/255, 173/255, 173/255, .55
     padding:dp(10)
     spacing:dp(10)
     radius:dp(5)
@@ -604,7 +731,6 @@ ScreenManager:
     items_count:""
     subtext:''
     
-
     orientation:'vertical'
     Image:
         source:root.image
@@ -622,18 +748,112 @@ ScreenManager:
             halign:"center"
             text:root.items_count
               
+<SobreUsuario>:
+    name:"sobreUsuario"
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
 
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+    MDFloatLayout:
+        MDIconButton:
+            icon:"chevron-left"
+            pos_hint: {"center_y": .95}
+            user_font_size:"35sp"
+            on_press:app.root.current = "painel"
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+
+        MDLabel:            
+            text: "Sobre o usuário"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .88}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5} 
+                                     
+            MDLabel:
+                text:"Nome"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            Image: 
+                source: "img/user.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+
+            MDLabel:
+                id: nomefuncionario
+                text: " "
+                pos_hint: {"center_x": .55, "center_y": 3.1} 
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:     
+                text:"CPF"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+            MDLabel:
+                id: cpffuncionario
+                text: " "
+                pos_hint: {"center_x": .55, "center_y": 2.5} 
+            Image: 
+                source: "img/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.05}
+                size_hint: .7, .7
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+
+            MDLabel:
+                text:"ID"
+                font_size: "14sp"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            MDLabel:
+                text: " "
+                id: idfuncionario
+                pos_hint: {"center_x": .55, "center_y": .3} 
+            Image: 
+                source: "img/id.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+
+        Button:
+            text: "Editar Informações"
+            background_color: 0, 0, 0, 0
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .15}
+            on_release: app.root.current = 'mudar'
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
 
 
 <MudarInformacao>:
     name: 'mudar'
     MDFloatLayout:
-        md_bg_color: 188/255, 227/255, 217/255, 2
+        md_bg_color: 188/255, 227/255, 217/255, 1
         MDIconButton:
             icon: "chevron-left"
             user_font_size: "35sp"
             pos_hint: {"center_y": .95}
-            on_press: app.root.current = 'aboutuser'
+            on_press: app.root.current = 'painel'
             
         MDLabel:
             text: "Voltar"
@@ -643,7 +863,8 @@ ScreenManager:
         MDLabel:
             text: "Mude informações"
             font_size: "28sp"
-            pos_hint: {"center_x": .6, "center_y": .85}    
+            pos_hint: {"center_x": .6, "center_y": .85}  
+
         MDLabel:
             text: " "
             halign:"center"
@@ -671,15 +892,15 @@ ScreenManager:
             Image: 
                 source: "img/user.png"     
                 pos_hint: {"center_x": .96, "center_y": 3.5}
-                size_hint: .5, .5
+                size_hint: .5, .5                
             MDFloatLayout:
                 pos_hint: {"center_x": .5, "center_y": 3}
                 size_hint_y: .03    
                 md_bg_color: 120/255, 120/255, 120/255, 1
 
-            MDFloatLayout:
-                size_hint: .79, .08
-                pos_hint: {"center_x": .5, "center_y": .35}  
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
             MDLabel:
                 text:"CPF"
                 font_size: "14sp"
@@ -695,14 +916,13 @@ ScreenManager:
                 multiline: False
             Image: 
                 source: "img/cpf.png"     
-                pos_hint: {"center_x": .96, "center_y": 3}
+                pos_hint: {"center_x": .96, "center_y": 3.0}
                 size_hint: .7, .7
             MDFloatLayout:
                 pos_hint: {"center_x": .5, "center_y": 2.55}
                 size_hint_y: .03    
                 md_bg_color: 120/255, 120/255, 120/255, 1    
 
-        
         MDFloatLayout:
             size_hint: .79, .08
             pos_hint: {"center_x": .5, "center_y": .35}  
@@ -743,7 +963,7 @@ ScreenManager:
                     pos: self.pos
                     radius: [2]  
 
-<chekarTela>:
+<ChekarTela>:
     name: 'check'
     MDFloatLayout:
         md_bg_color: 188/255, 227/255, 217/255, 1
@@ -786,7 +1006,7 @@ ScreenManager:
                     pos: self.pos
                     radius: [6]
 
-<checandoTela>:
+<ChecandoTela>:
     name: 'checando'
     MDFloatLayout:
         md_bg_color: 188/255, 227/255, 217/255, 1
