@@ -1,0 +1,40 @@
+<BatePapoScreen>:
+    name:'menssager'  
+    MDTopAppBar:
+		title:'Menssager'
+		pos_hint:{'top':1}
+		right_action_items:[['magnify', lambda x:app.callback(x)],['dots-vertical', lambda x:app.callback(x)]]
+		size_hint_x:1
+        MDRelativeLayout:
+            md_bg_color: 237/255, 206/255, 186/255, 1
+            size_hint_y: .45
+            pos_hint:{"top": 1}
+
+            Image:
+                source:"img/fundoTela.png"
+                size_hint: None, None
+                size: self.parent.width - dp(72), self.parent.height - dp(56)
+                allow_stretch: True
+                keep_ratio: False
+                x: -dp(20)
+                y: dp(40)
+	MDBoxLayout:
+		size_hint_y:None
+		height:root.height*0.9
+		MDTabs:
+			tab_hint_x:True
+			on_tab_switch:app.change_tabs(args)
+			ScreenTab:
+				title:'Chats'
+				ChatScreen:
+					id:chats
+
+			ScreenTab:
+				title:'Groups'
+				GroupScreen:
+					id:groups
+
+			ScreenTab:
+				title:'Status'
+				StatusScreen:
+					id:status

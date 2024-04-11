@@ -5,8 +5,13 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, ScreenManager
+from kivymd.uix.menu import MDDropdownMenu
 
 from funcoes import voltar_Login, voltar_Registro
+from chat.batePapo import BatePapoScreen
+from chat.chatScreen import ChatScreen
+from chat.groupScreen import GroupScreen
+from chat.statusScreen import StatusScreen
 
 # DEFINI O TAMANHO DA TELA 
 Window.size = (350, 580)
@@ -93,6 +98,8 @@ class SobreUsuario(Screen):
     def on_enter(self):
         from funcoes import on_enter2
         on_enter2(self)
+
+
 
 class MudarInformacao(Screen):
     def editar_Informacoes(self, nome, cpf, id):
@@ -181,9 +188,40 @@ class RegistroPaciente(Screen):
 
 class AppAnsiedade(MDApp):
 
+    def init_menu(self):
+        menu_items=[
+            {   "text":f"Configurações",
+                "viewclass":"OneLineListItem",
+                "divider":None,
+                "on_release":lambda x='Configurações':self.menu_callback(x)},
+            {   "text":f"Sair",
+				"viewclass":"OneLineListItem",
+				"divider":None,
+				"on_release":lambda x='Sair':self.menu_callback(x)},
+            ]
+        self.menu = MDDropdownMenu(items=menu_items, 
+                               width_mult=4)
+
     def build(self):
+        self.init_menu()
         tela = Builder.load_file ("Screen.kv")   
-        apresentarTela =tela 
+        apresentarTela =tela
         return apresentarTela
+
+    def menu_callback(self, instance):
+        print(instance)
+        self.menu.dismiss()
+
+#criar função de mudança de tela direita e esquerda
+
+    def change_tabs(self,args):
+        tab_instance =args[1]
+        tab_name = args[3]
+        if tab_name == 'Chats':
+            tab_instance.children[0].load_chats()
+        if tab_name == 'Groups':
+            tab_instance.children[0].load_groups()
+        if tab_name =='Status':
+            tab_instance.children[0].load_status()
 
 AppAnsiedade().run()

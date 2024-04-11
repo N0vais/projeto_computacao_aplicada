@@ -1,0 +1,20 @@
+<StatusScreen>:
+	status_container:status_container
+	MDBoxLayout:
+		MDRecycleView:
+			id:status_container
+			viewclass:'StatusItem'
+			RecycleBoxLayout:
+				orientation:'vertical'
+				default_size_hint:1, None
+				default_size:None, dp(64)
+				size_hint_y:None
+				height:self.minimum_height
+
+<StatusItem>:
+	text:root.username
+	secondary_text:root.date
+	ImageLeftWidget:
+		source:root.source
+		radius:self.width/2
+		
