@@ -15,7 +15,7 @@ class ChatScreen(MDFloatLayout):
 
     def load_chats(self):
         data = [{'source': 'img/ansiedade.png', 'username': 'Sol', 'message': 'Como voçê se sente hoje', 'data': 'Today', 'time': '21:23'}
-        for i in range (200)]
+        for i in range (5)]
         self.chat_container.data = data
 
 # INICIO DA CLASSE CHATE ITEM 

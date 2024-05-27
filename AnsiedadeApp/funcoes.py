@@ -12,14 +12,23 @@ from kivymd.uix.pickers import MDDatePicker
 
 # CRIANDO A CONECÇÃO COM O BANCO FIREBASE (real time)...
 firebaseConfig = {
-    'apiKey': "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw",
-    'authDomain': "autocuidado-a-ansiedade.firebaseapp.com",
-    'databaseURL': "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com",
-    'projectId': "autocuidado-a-ansiedade",
-    'storageBucket': "autocuidado-a-ansiedade.appspot.com",
-    'messagingSenderId': "225042815723",
-    'appId': "1:225042815723:web:423468a0eb24b46e85bcae",
-    'measurementId': "G-3B9PNYNH0P"
+    'apiKey': "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o",
+    'authDomain': "ansiedade1-f192e.firebaseapp.com",
+    'databaseURL': "https://ansiedade1-f192e-default-rtdb.firebaseio.com/",
+    'projectId': "ansiedade1-f192e",
+    'storageBucket': "ansiedade1-f192e.appspot.com",
+    'messagingSenderId': "715188460497",
+    'appId': "1:715188460497:web:addfcc24a07d6d2e9adef0",
+    'measurementId': "G-1ZWQV93J65"
+
+    #'apiKey': "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw",
+    #'authDomain': "autocuidado-a-ansiedade.firebaseapp.com",
+    #'databaseURL': "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com",
+    #'projectId': "autocuidado-a-ansiedade",
+    #'storageBucket': "autocuidado-a-ansiedade.appspot.com",
+    #'messagingSenderId': "225042815723",
+    #'appId': "1:225042815723:web:423468a0eb24b46e85bcae",
+    #'measurementId': "G-3B9PNYNH0P"
 };
 baseDados = pyrebase.initialize_app(firebaseConfig)
 listaBase =[]
@@ -30,8 +39,8 @@ def voltar_Registro(self, *args):
 
 # FUNCAO QUE COLOCA INFORMAÇOES DO USUARIO NO BANCO FIREBASE UTILIZANDO POST
 def criar_Postagem(self, nome, cpf, senha):    
-    bancoDados = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    bancoDados = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/Usuario/.json"  #"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"#"AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
 
     lista = []
     request = requests.get(self.bancoDados + '?auth=' + self.auto_key)
@@ -304,8 +313,8 @@ def start_second_thread(self):
     threading.Thread(target=self.load_data).start()
 
 def on_enter2(self):
-    firebase_url = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com "    
-    auto_key = 'AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw'  
+    firebase_url = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com "    
+    auto_key = 'AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o'#'AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw'  
   
     nome = list(open('autenticado.txt', 'r'))
     nome = nome[0]

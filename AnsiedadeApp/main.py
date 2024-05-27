@@ -8,6 +8,8 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.uix.menu import MDDropdownMenu
 
 from funcoes import voltar_Login, voltar_Registro
+from kivymd.uix.list import TwoLineAvatarIconListItem
+from kivy.properties import StringProperty
 from chat.batePapo import BatePapoScreen
 from chat.chatScreen import ChatScreen
 from chat.groupScreen import GroupScreen
@@ -19,14 +21,23 @@ Window.size = (350, 580)
 #gerencia os chamados para apresentar na tela
 apresentarTela = ScreenManager()
 firebaseConfig={
-    'apiKey': "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw",
-    'authDomain': "autocuidado-a-ansiedade.firebaseapp.com",
-    'databaseURL': "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com",
-    'projectId': "autocuidado-a-ansiedade",
-    'storageBucket': "autocuidado-a-ansiedade.appspot.com",
-    'messagingSenderId': "225042815723",
-    'appId': "1:225042815723:web:423468a0eb24b46e85bcae",
-    'measurementId': "G-3B9PNYNH0P"
+    'apiKey': "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o",
+    'authDomain': "ansiedade1-f192e.firebaseapp.com",
+    'databaseURL': "https://ansiedade1-f192e-default-rtdb.firebaseio.com/",
+    'projectId': "ansiedade1-f192e",
+    'storageBucket': "ansiedade1-f192e.appspot.com",
+    'messagingSenderId': "715188460497",
+    'appId': "1:715188460497:web:addfcc24a07d6d2e9adef0",
+    'measurementId': "G-1ZWQV93J65"
+
+    #'apiKey': "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw",
+    #'authDomain': "autocuidado-a-ansiedade.firebaseapp.com",
+    #'databaseURL': "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com",
+    #'projectId': "autocuidado-a-ansiedade",
+    #'storageBucket': "autocuidado-a-ansiedade.appspot.com",
+    #'messagingSenderId': "225042815723",
+    #'appId': "1:225042815723:web:423468a0eb24b46e85bcae",
+    #'measurementId': "G-3B9PNYNH0P"
   
 };
 baseDados = pyrebase.initialize_app(firebaseConfig)
@@ -42,7 +53,7 @@ class Apresentacao(Screen):
 class Ansiedada(Screen):
     pass
 
-class Deprecao(Screen):
+class Depressao(Screen):
     pass
 
 class PreCrise(Screen):
@@ -51,11 +62,20 @@ class PreCrise(Screen):
 class PosCrise(Screen):
     pass
 
+class TelaMedicamento(Screen):
+    pass
+
+class VerificandoMedicamentos(Screen):
+    pass
+
+class ControleMedicamentos(Screen):
+    pass
+
 class Tela_registro(Screen):
 
-    bancoDados = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
-    bancoDados2 = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    bancoDados = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/Usuario/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
+    bancoDados2 = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"
 
     def voltar_Registro(self, *args):
         voltar_Registro(self, *args)
@@ -66,8 +86,8 @@ class Tela_registro(Screen):
 
 class Tela_logar(Screen):
 
-    bancoDados = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    bancoDados = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/Usuario/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"
 
     def voltar_Login(self, *args):
         voltar_Login(self, *args)
@@ -77,8 +97,8 @@ class Tela_logar(Screen):
         pegar_Postagem(self, cpf, senha)
 
 class EsqueceuSenha(Screen):
-    bancoDados = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    bancoDados = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"
 
     def perdeuSenha(self, cpf, senha):
         from funcoes import refazer_Senha
@@ -92,8 +112,8 @@ class PainelInicial(Screen):
         self.ids.lbpainel.text = "Olá, " + str(nome)
 
 class SobreUsuario(Screen):
-    firebase_url = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    firebase_url = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"
 
     def on_enter(self):
         from funcoes import on_enter2
@@ -107,8 +127,8 @@ class MudarInformacao(Screen):
         editar_Usuario(self, nome, cpf, id)
 
 class ChekarTela(Screen):
-    bancoFirebase = "https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
-    auto_key = "AIzaSyBD_N15hbNLArph_6wblwxjCFe8P6Z74gw"
+    bancoFirebase = "https://ansiedade1-f192e-default-rtdb.firebaseio.com/.json"#"https://autocuidado-a-ansiedade-default-rtdb.firebaseio.com/Usuario/.json"
+    auto_key = "AIzaSyAshz9uUEv2A3n_JQ70-tqcSad7qmUEE-o"
 
     def checar(self, especialidade, data, paciente):
         from funcoes import checar
@@ -156,7 +176,7 @@ class ComtroleMedico(Screen):
         from funcoes import criar_delete
         criar_delete(self, nome_medicamento, qtd, id_medicamento)
 
-class VerificarMedicamentos(Screen):
+class Exercicios(Screen):
     def parar(self):
         from funcoes import salvar
         salvar(self)
@@ -176,6 +196,21 @@ class VerificarMedicamentos(Screen):
     def dados_tabela(self, cols, values):
         from funcoes import dados_tabela
         dados_tabela(self, cols, values)
+
+    def on_enter(self):
+        nome = list(open("autenticado.txt", "r"))
+        nome = nome[0]
+        self.ids.exerciciolb.text =  "Vamos-lá  " + str(nome)
+
+
+class TwoLineIconItem(TwoLineAvatarIconListItem):
+	icon = StringProperty()
+	action = StringProperty()
+	description = StringProperty()
+
+class SportScreen(Screen):
+    pass
+    
 
 class RegistroPaciente(Screen):
     def callbackregisterpacientes(self, *args):
@@ -197,20 +232,25 @@ class AppAnsiedade(MDApp):
             {   "text":f"Sair",
 				"viewclass":"OneLineListItem",
 				"divider":None,
-				"on_release":lambda x='Sair':self.menu_callback(x)},
+				"on_release":lambda x='painel':self.menu_callback(x)},
             ]
         self.menu = MDDropdownMenu(items=menu_items, 
                                width_mult=4)
+        
+    def callback(self, instace):
+        self.menu.caller = instace
+        self.menu.open()
 
     def build(self):
         self.init_menu()
+        self.theme_cls.primary_palette = 'BlueGray'
         tela = Builder.load_file ("Screen.kv")   
         apresentarTela =tela
         return apresentarTela
 
     def menu_callback(self, instance):
         print(instance)
-        self.menu.dismiss()
+        self.menu.dismiss( )
 
 #criar função de mudança de tela direita e esquerda
 

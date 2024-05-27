@@ -2,7 +2,7 @@ ScreenManager:
     TelaAbertura:
     Apresentacao:
     Ansiedada:
-    Deprecao:
+    Depressao:
     PreCrise:
     PosCrise:
     Tela_logar:
@@ -14,6 +14,10 @@ ScreenManager:
     ChekarTela:
     ChecandoTela:
     BatePapoScreen:
+    TelaMedicamento:
+    Exercicios:
+    ControleMedicamentos:
+    SportScreen:
     
 <TelaAbertura>:
     name: 'abertura'
@@ -119,7 +123,7 @@ ScreenManager:
                 
             ElementCard:
                 image:"img/deprecao.png"
-                text:"Depreção"
+                text:"Depressão"
                 on_release: app.root.current = 'deprecao'
 
             ElementCard:
@@ -179,12 +183,12 @@ ScreenManager:
             pos_hint: {"center_x": .5, "center_y": .10}      
             on_press: app.root.current = 'apresentar'
 
-<Deprecao>:
+<Depressao>:
     name:'deprecao'
     MDFloatLayout:
         md_bg_color: 190/255, 240/255, 217/255
         MDLabel:
-            text: "O que é depreção?"   
+            text: "O que é depressão?"   
             pos_hint: {"center_x": .5, "center_y": .90}       
             halign: "center"
             theme_text_color: "Custom"
@@ -678,6 +682,11 @@ ScreenManager:
         md_bg_color: 237/255, 206/255, 186/255, 1
         size_hint_y: .45
         pos_hint:{"top": 1}
+        MDIconButton:
+            icon: "chevron-left"
+            font_size: "35sp"
+            pos_hint: {"center_x":.950,"center_y": .95}
+            on_press: app.root.current = "apresentar" 
 
         Image:
             source:"img/fundoTela.png"
@@ -717,20 +726,30 @@ ScreenManager:
                 on_release: app.root.current = 'menssager'
                 
             ElementCard:
-                image:"img/meds3.png"
-                text:"Estoque"
-                on_release: app.root.current = 'meds'
+                image:"img/infos.png"
+                text:"Históricos"
+                on_release: app.root.current = 'remedio'
 
+            ElementCard:
+                image:"img/work-out.png"
+                text:"Exercicios" 
+                on_release: app.root.current = 'exercicios'
+
+            ElementCard:
+                image:"img/pessoa.png"
+                text:"controle"
+                text_color:54, 52, 69
+                on_release: app.root.current = 'controleMedicamentos'  
+            ElementCard:
+                image:"img/list.png"
+                text:"paly-list"
+                text_color:54, 52, 69
+                on_release: app.root.current = 'playList'  
             ElementCard:
                 image:"img/register.png"
-                text:"Cadastro" 
-                on_release: app.root.current = 'HomePages/homePages'
-
-            ElementCard:
-                image:"img/infos.png"
-                text:"Informações"
+                text:"Registro"
                 text_color:54, 52, 69
-                on_release: app.root.current = 'info'         
+                on_release: app.root.current = 'registroInformacoes'       
 
 <ElementCard@MDCard>:
     md_bg_color: 120/255, 173/255, 173/255, .55
@@ -1149,7 +1168,25 @@ ScreenManager:
 
 <TelaMedicamento>
     name: 'remedio'
-    md_bg_color: 188/255,  188/255, 188/255, 2
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+    MDFloatLayout:
+        MDLabel:
+            text: "Dar o primeiro passo em busca de ajuda pode ser difícil, a depressão é uma doença real e pode ser tratada. Buscar ajuda profissional é um ato de força e amor próprio, não de fraqueza. Você não está sozinho(a) nessa jornada. "
+            halign:"auto"
+            padding:dp(15)
+            pos_hint: { "center_y": .75}
     MDIconButton:
         icon: 'chevron-double-left'
         font_size: "35sp"
@@ -1158,12 +1195,14 @@ ScreenManager:
     MDLabel:
         text: 'Voltar'
         font_size: "18sp"
-        pos_hint: {"center_x": .65, "center_y": .94}
+        pos_hint: {"center_x": .65, "center_y": .949}
+
     Button:
-        text: "Verificar estoque..."
-        background_color: 0,0,0,1
-        size_hint: .79, .08
-        on_release: app.root.current = "VerificarMedicamentos"
+        text: "Verificar histórico..."
+        background_color: 0,0,0,0
+        size_hint: .79, .085
+        pos_hint:{'center_x': .5,'center_y': .29 }
+        on_release: app.root.current = "VerificarHistorico"
         canvas.before:
             Color:
                 rgb: 25/255,35/255,45/255,1
@@ -1174,8 +1213,9 @@ ScreenManager:
 
     Button:
         text: "Comtrole de medicamento..."
-        background_color: 0,0,0,1
-        size_hint: .79, .08
+        background_color: 0,0,0,0
+        size_hint: .79, .085
+        pos_hint:{'center_x': .5,'center_y': .19 }
         on_release: app.root.current = "ControleMedicamentos"
         canvas.before:
             Color:
@@ -1185,28 +1225,169 @@ ScreenManager:
                 pos:  self.pos
                 radius:[1]
 
-<VerificandoMedicamentos>:
-    name: 'VerificarMedicamentos'
+<Exercicios>:
+    name: 'exercicios'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
+        MDFloatLayout:
+            MDLabel:
+                text: "Exercícios "
+                halign:"center"
+                padding:dp(15)
+                pos_hint: { "center_y": .85}
+            MDIconButton:
+                icon: "chevron-left"
+                font_size: "35sp"
+                pos_hint: {"center_y": .85}
+                on_press: app.root.current = "painel"
+            MDIconButton:
+                icon:"dots-vertical"
+                font_size: "35sp"
+                pos_hint: {"center_x": .95, "center_y": .85}
+                on_press: app.root.current = "####"
+        #this is the exercici
+    
+            
+		    
+    MDScrollView:
+        pos_hint:{'top':0.90}
+        MDBoxLayout:
+            orientation:'vertical'
+            adaptive_height:True
+            TwoLineAvatarIconListItem:
+                text:" "
+                secondary_text:'A jornada é tão importante quanto ao destino.'
+                divider:None
+                id:exerciciolb
+                ImageLeftWidget:
+                    source:'img/user.png'
+                    radius:self.width/2
+            TwoLineIconItem:
+                icon:'yoga'
+                action:'yoga'
+                description:'Profile, Catalog, messaging tools'
+                on_press:app.root.current ='sport'
+            TwoLineIconItem:
+                icon:'walk'
+                action:'Caminhar'
+                description:'Security, notification, change number'
+                on_press:app.root.current ='sport'
+            TwoLineIconItem:
+                icon:'run'
+                action:'Correr'
+                description:'Block contact disappearing message'
+                on_press:app.root.current ='sport'
+            TwoLineIconItem:
+                icon:'meditation'
+                action:'Meditar'
+                description:'Create, edit, profile photo'
+                on_press:app.root.current ='sport'
+            TwoLineIconItem:
+                icon:'human-handsup'
+                action:'Alongamentos'
+                description:'Theme wallpaper, chat history'
+                on_press:app.root.current ='sport'
+            TwoLineIconItem:
+                icon:'human'
+                action:'Alongamentos'
+                description:'Theme wallpaper, chat history'
+                on_press:app.root.current ='sport'
+            
+            
+
+<TwoLineIconItem>:
+	theme_text_color:'Custom'
+	secondary_theme_text_color:'Custom'
+	text_color:'white' if app.theme_cls.theme_style == 'Dark' else  'black'
+	secondary_text_color:'gray'
+	text:root.action
+	secondary_text:root.description
+	IconLeftWidget:
+		icon:root.icon
+
+
+<SportScreen>:
+    name: 'sport'
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
     MDFloatLayout:
-        md_bg_color: 188/255,188/255,188/255, 1
+        MDLabel:
+            text: "Exercícios "
+            halign:"center"
+            padding:dp(15)
+            pos_hint: { "center_y": .85}
         MDIconButton:
             icon: "chevron-left"
             font_size: "35sp"
-            pos_hint: {"center_y": .95}
-            on_press: app.root.current = "medicamentos"
-        MDLabel:
-            text: "Voltar"
-            font_size: "18sp"
-            pos_hint: {"center_x": .65, "center_y": .94}
+            pos_hint: {"center_y": .85}
+            on_press: app.root.current = "exercicios"
+        MDIconButton:
+            icon:"dots-vertical"
+            font_size: "35sp"
+            pos_hint: {"center_x": .95, "center_y": .85}
+            on_press: app.root.current = "####"
+        MDBoxLayout:
+            background_color:0,0,1,1
+            size_hint:.80, .50
+            padding:dp(10)
+            Button:
+                text: "Pause"
+                size_hint: .7, .03
+                
+                radius:5
+                pos_hint: {"center_x": .3, "center_y": .10}
+
+            Button:
+                text: "Proximo"
+                size_hint: .79, .025
+                
+                radius:5
+                pos_hint: {"center_x": .6, "center_y": .10}
+           
 
 
 <ControleMedicamentos>:
     name: "controleMedicamentos"
+    MDRelativeLayout:
+        md_bg_color: 237/255, 206/255, 186/255, 1
+        size_hint_y: .45
+        pos_hint:{"top": 1}
+
+        Image:
+            source:"img/fundoTela.png"
+            size_hint: None, None
+            size: self.parent.width - dp(72), self.parent.height - dp(56)
+            allow_stretch: True
+            keep_ratio: False
+            x: -dp(20)
+            y: dp(40)
     MDIconButton:
         icon: "chevron-double-left"
         user_font_size: "35sp"
         pos_hint: {"center_y": .95}
-        on_press: app.root.current = 'medicamentos'
+        on_press: app.root.current = 'painel'
     MDLabel:
         text: "Voltar"
         font_size: "18sp"
@@ -1248,81 +1429,81 @@ ScreenManager:
             pos_hint: {"center_x": .5, "center_y": 3}
             size_hint_y: .03    
             md_bg_color: 120/255, 120/255, 120/255, 1
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .35}  
+        MDLabel:
+            text:"Quantidade"
+            font_size: "14sp"
+            pos_hint: {"center_x": .5, "center_y": 3.3} 
+        TextInput:
+            id: quantidade
+            size_hint_y: .75
+            pos_hint: {"center_x": .49, "center_y": 2.85} 
+            background_color: 0, 0, 0, 0    
+            cursor_color: 0, 0, 0, 1
+            cursor_width: "2sp"
+            font_size: "17sp"
+            multiline: False
+        Image:  
+            source: "img/meds3.png"     
+            pos_hint: {"center_x": .96, "center_y": 3}
+            size_hint: .7, .7
         MDFloatLayout:
-            size_hint: .79, .08
-            pos_hint: {"center_x": .5, "center_y": .35}  
-            MDLabel:
-                text:"Quantidade"
-                font_size: "14sp"
-                pos_hint: {"center_x": .5, "center_y": 3.3} 
-            TextInput:
-                id: quantidade
-                size_hint_y: .75
-                pos_hint: {"center_x": .49, "center_y": 2.85} 
-                background_color: 0, 0, 0, 0    
-                cursor_color: 0, 0, 0, 1
-                cursor_width: "2sp"
-                font_size: "17sp"
-                multiline: False
-            Image:  
-                source: "img/cpf.png"     
-                pos_hint: {"center_x": .96, "center_y": 3}
-                size_hint: .7, .7
-            MDFloatLayout:
-                pos_hint: {"center_x": .5, "center_y": 2.55}
-                size_hint_y: .03    
-                md_bg_color: 120/255, 120/255, 120/255, 1    
+            pos_hint: {"center_x": .5, "center_y": 2.55}
+            size_hint_y: .03    
+            md_bg_color: 120/255, 120/255, 120/255, 1    
 
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .35}  
+        MDLabel:
+            text:"ID do medicamento"
+            font_size: "14sp"
+            pos_hint: {"center_x": .5, "center_y": .9} 
+        TextInput:  
+            id: id_medicamento 
+            size_hint_y: .75
+            pos_hint: {"center_x": .49, "center_y": .4} 
+            background_color: 0, 0, 0, 0    
+            cursor_color: 0, 0, 0, 1
+            cursor_width: "2sp"
+            font_size: "17sp"
+            multiline: False
+        Image: 
+            source: "img/key.png"     
+            pos_hint: {"center_x": .96, "center_y": .5}
+            size_hint: .4, .4
         MDFloatLayout:
-            size_hint: .79, .08
-            pos_hint: {"center_x": .5, "center_y": .35}  
-            MDLabel:
-                text:"ID do medicamento"
-                font_size: "14sp"
-                pos_hint: {"center_x": .5, "center_y": .9} 
-            TextInput:  
-                id: id_medicamento 
-                size_hint_y: .75
-                pos_hint: {"center_x": .49, "center_y": .4} 
-                background_color: 0, 0, 0, 0    
-                cursor_color: 0, 0, 0, 1
-                cursor_width: "2sp"
-                font_size: "17sp"
-                multiline: False
-            Image: 
-                source: "img/key.png"     
-                pos_hint: {"center_x": .96, "center_y": .5}
-                size_hint: .4, .4
-            MDFloatLayout:
-                pos_hint: {"center_x": .5, "center_y": 0}
-                size_hint_y: .03    
-                md_bg_color: 120/255, 120/255, 120/255, 1        
+            pos_hint: {"center_x": .5, "center_y": 0}
+            size_hint_y: .03    
+            md_bg_color: 120/255, 120/255, 120/255, 1        
                                  
-        Button: 
-            text: "Entrada"
-            background_color: 0, 0, 0, 0
-            size_hint: .79, .065
-            pos_hint: {"center_x": .5, "center_y": .2}
-            on_release: root.entradaMeds(nome_med.text, quantidade.text, id_med.text)
-            canvas.before:
-                Color: 
-                    rgb: 25/255, 38/255, 35/255, 1
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: [2]  
+    Button: 
+        text: "Entrada"
+        background_color: 0, 0, 0, 0
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .2}
+        on_release: root.entradaMeds(nome_med.text, quantidade.text, id_med.text)
+        canvas.before:
+            Color: 
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]  
 
-        Button:
-            text: "Saída"
-            background_color: 0, 0, 0, 0
-            size_hint: .79, .065
-            pos_hint: {"center_x": .5, "center_y": .1}
-            on_release: root.saidaMeds(nome_med.text, quantidade.text, id_med.text)
-            canvas.before:
-                Color: 
-                    rgb: 25/255, 38/255, 35/255, 1
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: [2] 
+    Button:
+        text: "Saída"
+        background_color: 0, 0, 0, 0
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .1}
+        on_release: root.saidaMeds(nome_med.text, quantidade.text, id_med.text)
+        canvas.before:
+            Color: 
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2] 
 

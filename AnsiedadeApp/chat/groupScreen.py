@@ -10,6 +10,6 @@ class GroupScreen(MDFloatLayout):
 	group_container = ObjectProperty()
 	def load_groups(self):
 		data = [{'source':'img/ansiedade.png', 'username':'Sol', 'message':'Ajornada é tão importante quanto ao destino', 'date':'Today', 'time':'10:12 AM'}
-		for i in range(30)]
+		for i in range(8)]
 		self.group_container.data = data
 	

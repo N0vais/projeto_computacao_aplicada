@@ -11,7 +11,7 @@ class StatusScreen(MDFloatLayout):
 	status_container = ObjectProperty()
 	def load_status(self):
 		data = [{'source':'img/ansiedade.png', 'username':'Sol', 'date':'Today'}
-		for i in range(20)]
+		for i in range(8)]
 		self.status_container.data = data
 
 
